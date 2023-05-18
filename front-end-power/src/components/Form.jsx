@@ -1,3 +1,4 @@
+import { csrftoken } from "./CSRFToken";
 
 
 
@@ -27,6 +28,14 @@ function Form({ setUserData, setNotFound }) {
     }
     getUserState()
 
+
+    fetch(`http://127.0.0.1:8000/usuario/${inputValue}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+      },
+    });
   }
 
 
@@ -42,7 +51,7 @@ function Form({ setUserData, setNotFound }) {
             autoFocus
             autoComplete="off"
           />
-          
+        
         </div>
       </form>
     );

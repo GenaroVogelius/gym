@@ -24,7 +24,8 @@ power_site = PowerAdminArea(name="powerAdmin")
 # ? aca lo que haces es customize el formulario de django
 class UsuarioModelForm(forms.ModelForm):
     DNI = forms.IntegerField(widget=forms.TextInput(attrs={'size': 10}))
-    charfieldValidator = RegexValidator(r'^[a-zA-Z ]*$', 'No puede ingresar números aquí.')
+    # estableces lo que esta permitdo por medio de una regular expresion
+    charfieldValidator = RegexValidator(r'^[a-zA-Z]*$', 'No puede ingresar números aquí.')
     nombre = forms.CharField(max_length=50, validators=[charfieldValidator])
     apellido=forms.CharField(max_length=50, validators=[charfieldValidator])
 
@@ -32,15 +33,14 @@ class UsuarioModelForm(forms.ModelForm):
         model = Usuario
         fields = '__all__'
 
-class excelImportForm(forms.Form):
-    excel_upload = forms.FileField()
+
 
 class UsuarioAdmin(admin.ModelAdmin):
     list_display= ("nombre", "apellido", "sexo", "DNI", "celular", "pago", "vencimiento", "activo")
     ordering = ("-nombre", )
     list_filter =("activo",)
     # te hace la paginación:
-    list_per_page = 5
+    list_per_page = 10
     search_fields = ("nombre", "apellido","DNI",)
     search_help_text = "Buscar por nombre, apelido o DNI"
     actions = ['mark_as_published', 'mark_as_unpublished']
@@ -87,10 +87,16 @@ class UsuarioAdmin(admin.ModelAdmin):
 
 
 
+class AsistenciaAdmin(admin.ModelAdmin):
+    list_display = ("usuario","dia", "hora", "activo")
+    list_filter =("dia","activo")
+    search_fields = ("usuario",)
 
+    
 
 
 power_site.register(Usuario, UsuarioAdmin)
+power_site.register(Asistencia, AsistenciaAdmin)
 
 # esto que haces es para no tener que registrar los modelos uno por uno
 # models = apps.get_models()
