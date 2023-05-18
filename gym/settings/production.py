@@ -20,4 +20,5 @@ DATABASES = {
 }
 
 #! esto lo cambias por el host que te den en vercel
-ALLOWED_HOSTS = [".vercel.app"]
+ALLOWED_HOSTS = [".vercel.app", "localhost",
+    "127.0.0.1",]
