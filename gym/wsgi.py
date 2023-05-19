@@ -16,4 +16,4 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings")
 application = get_wsgi_application()
 
 # !agregaste esto para vercel
-# app = application
+app = application

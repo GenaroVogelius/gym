@@ -117,9 +117,10 @@ STATIC_URL = "/assets/"
 #? aca le decis el path que tiene que hacer django para llegar a assets.
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'front-end-power/dist/assets'), os.path.join(BASE_DIR, 'custom_admin/static')
+    os.path.join(BASE_DIR, 'front-end-power/dist/assets'), os.path.join(BASE_DIR, 'custom_admin/static'), os.path.join(BASE_DIR, 'static')
 ]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
