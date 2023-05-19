@@ -1,15 +1,14 @@
+
 {
-  "builds": [
-    {
-      "src": "gym/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "gym/wsgi.py"
-    }
-  ]
+    "builds": [{
+        "src": "gym/wsgi.py",
+        "use": "@ardnt/vercel-python-wsgi",
+        "config": { "maxLambdaSize": "15mb" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "gym/wsgi.py"
+        }
+    ]
 }
