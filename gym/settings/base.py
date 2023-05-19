@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # !agregaste esto, .parent te permite ir un folder atrás
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -15,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = "django-insecure-5p46zn2l-!6^gtbxt3rirkg5y)$9b9yld^7(r5qlwc5l5$-rx-"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 #? ALLOWED_HOSTS = [] esto te lo llevaste a production
@@ -117,7 +118,7 @@ STATIC_URL = "/assets/"
 #? aca le decis el path que tiene que hacer django para llegar a assets.
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'front-end-power/dist/assets'), os.path.join(BASE_DIR, 'custom_admin/static'), os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'front-end-power/dist/assets'), os.path.join(BASE_DIR, 'custom_admin/static')
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
