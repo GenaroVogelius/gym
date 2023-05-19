@@ -10,9 +10,8 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
-from gym.settings.base import Settings
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", Settings)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings.base")
 
 application = get_wsgi_application()
 
