@@ -13,8 +13,11 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings")
 
+
+application = get_wsgi_application()
+
 # !agregaste esto para vercel, enves de application pones app
-app = get_wsgi_application()
+app = application
 
 
 
