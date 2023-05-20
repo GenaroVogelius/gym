@@ -1,17 +1,21 @@
-
 {
   "version": 2,
   "builds": [
     {
-      "src": "gym/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      "src": "front-end-power/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "front-end-power/dist"
+      }
+    },
+    {
+      "src": "gym/**",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "gym/wsgi.py"
-    }
+    { "handle": "filesystem" },
+    { "src": "/api/(.*)", "dest": "power_app/api/$1" },
+    { "src": "/(.*)", "dest": "front-end-power/dist/$1" }
   ]
 }
