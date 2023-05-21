@@ -2,17 +2,18 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from gym.settings import base
+
 
 
 def main():
     # !Esto de aca le dice donde buscar las settings
-    if base.DEBUG:
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings.local")
-    else:
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings.production")
+    # if base.DEBUG:
+    #     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings.local")
+    # else:
+    #     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings.production")
 
     # si el debug esta en true va a ir a las settings locales sino a las de produccion
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings")
 
     try:
         from django.core.management import execute_from_command_line
