@@ -10,20 +10,13 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
-# from gym.settings import base
 
-
-# if base.DEBUG:
-#     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings.local")
-# else:
-#     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings.production")
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gym.settings")
-
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gym.settings')
 
 application = get_wsgi_application()
 
 # !agregaste esto para vercel, enves de application pones app
-app = application
+
 
 
 
