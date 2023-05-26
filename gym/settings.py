@@ -19,11 +19,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
-DEBUG = False
+
+# ! borrar esto cuando funcione
+# DEBUG = False
 
 
 # ! cambiar allowed host cuando subis proyecto
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:    
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -142,8 +145,6 @@ STATICFILES_DIRS = [
 
 # ? static url le dice a django donde buscar los archivos estaticos, como le pusiste assets va a ir a buscarlos ahi.
 STATIC_URL = "/assets/"
-
-
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
