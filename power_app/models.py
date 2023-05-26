@@ -27,6 +27,8 @@ class Usuario(models.Model):
         null=True, blank=True, help_text="Si no es especificado será dentro de 30 dias"
     )
     activo = models.BooleanField(default=True, editable=False)
+    id = models.AutoField(primary_key=True)
+    # esto de id lo pusiste asi ya que importas los usuarios desde un excel, en asistencia no lo pones porque arranca desde cero.
 
     @staticmethod
     @receiver(pre_save, sender="power_app.Usuario")
@@ -98,7 +100,6 @@ class Asistencia(models.Model):
     usuario = models.ForeignKey(
         Usuario, on_delete=models.CASCADE,
     )
-    # editable=False
     dia = models.DateField(auto_now=True)
     hora = models.TimeField(auto_now=True)
     activo = models.BooleanField(default=True, editable=False)
