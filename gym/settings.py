@@ -173,14 +173,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
+DEBUG = True
 
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:    
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-# Application definition
+
 
 INSTALLED_APPS = [
     "power_app", # !agregaste esto
@@ -282,16 +282,13 @@ USE_TZ = True
 
 
 
-# ? static url le dice a django donde buscar los archivos estaticos, como le pusiste assets va a ir a buscarlos ahi.
-STATIC_URL = "/assets/"
-
 #? aca le decis el path que tiene que hacer django para llegar a assets.
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'front-end-power/dist/assets'), os.path.join(BASE_DIR, 'custom_admin/static')
 ]
 
-
+# ? static url le dice a django donde buscar los archivos estaticos, como le pusiste assets va a ir a buscarlos ahi.
+STATIC_URL = "/assets/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -302,6 +299,7 @@ if DEBUG:
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
