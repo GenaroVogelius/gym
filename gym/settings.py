@@ -138,9 +138,11 @@ USE_TZ = True
 
 #? aca le decis el path que tiene que hacer django para llegar a assets.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'front-end-power/dist/assets'), os.path.join(BASE_DIR, 'custom_admin/static')
+    os.path.join(BASE_DIR, 'custom_admin/static')
 ]
 
+if DEBUG:
+    STATICFILES_DIRS += os.path.join(BASE_DIR, 'front-end-power/dist/assets'), 
 
 
 # ? static url le dice a django donde buscar los archivos estaticos, como le pusiste assets va a ir a buscarlos ahi.
