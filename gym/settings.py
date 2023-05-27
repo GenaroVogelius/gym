@@ -68,7 +68,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         #? fijate bien el path que tuviste que escribir
-        "DIRS": [os.path.join(BASE_DIR, 'custom_admin/templates/'), os.path.join(BASE_DIR, 'front-end-power/')], # !agregaste esto
+        "DIRS": [os.path.join(BASE_DIR, 'custom_admin/templates/'), os.path.join(BASE_DIR, 'front-end-power/dist')], # !agregaste esto
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
