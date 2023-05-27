@@ -4,7 +4,7 @@
 
 from pathlib import Path
 import os
-import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # !agregaste esto, .parent te permite ir un folder atrás
@@ -108,10 +108,15 @@ if DEBUG:
 
 else:
     DATABASES = {
-        'default': dj_database_url.config(
-            default='postgres://postgres:EFGR5PxAc43?p?5@db.xvlqmfuplyshqodtatai.supabase.co:5432/postgres'
-        )
+    'default': {
+        'ENGINE': config('DB_ENGINE'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
