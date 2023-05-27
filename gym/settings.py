@@ -4,6 +4,7 @@
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # !agregaste esto, .parent te permite ir un folder atrás
@@ -19,14 +20,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
-
-# ! borrar esto cuando funcione
-DEBUG = False
+# esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
 
 
-# ! cambiar allowed host cuando subis proyecto
-ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS = []
+
+
+ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:    
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -34,7 +33,6 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 
 INSTALLED_APPS = [
-    # 'whitenoise.runserver_nostatic',
     "power_app", # !agregaste esto
     'rest_framework',# !agregaste esto
     "corsheaders",# !agregaste esto
@@ -96,8 +94,8 @@ WSGI_APPLICATION = "gym.wsgi.application"
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
-# else:
-DATABASES = {
+if DEBUG:
+    DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
             "NAME": "postgres",
@@ -106,6 +104,13 @@ DATABASES = {
             "HOST": "db.xvlqmfuplyshqodtatai.supabase.co",
             "PORT": "5432"
         }
+    }
+
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgres://postgres:EFGR5PxAc43?p?5@db.xvlqmfuplyshqodtatai.supabase.co:5432/postgres'
+        )
     }
 
 
@@ -155,7 +160,7 @@ if DEBUG:
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    CORS_ALLOW_ALL_ORIGINS = True 
+    
 
 
 
