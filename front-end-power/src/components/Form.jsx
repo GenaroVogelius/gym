@@ -3,6 +3,8 @@ import { csrftoken } from "./CSRFToken";
 
 
 function Form({ setUserData, setNotFound }) {
+
+  const URL = "https://power-gym.onrender.com/"
   
   function handleSubmit(event){
     event.preventDefault()
@@ -11,7 +13,9 @@ function Form({ setUserData, setNotFound }) {
     let inputValue = event.target.input_dni.value
     const getUserState = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/usuario/${inputValue}`);
+        const response = await fetch(
+          `${URL}usuario/${inputValue}`
+        );
         const data = await response.json();
         
         if ("not found" in data) {
@@ -29,7 +33,7 @@ function Form({ setUserData, setNotFound }) {
     getUserState()
 
 
-    fetch(`http://127.0.0.1:8000/usuario/${inputValue}`, {
+    fetch(`${URL}usuario/${inputValue}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
