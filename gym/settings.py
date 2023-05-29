@@ -89,24 +89,13 @@ WSGI_APPLICATION = "gym.wsgi.application"
 
 
 
-# if DEBUG:
-#     DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
 if DEBUG:
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": "postgres",
-            "USER": "postgres",
-            "PASSWORD": "EFGR5PxAc43?p?5",
-            "HOST": "db.xvlqmfuplyshqodtatai.supabase.co",
-            "PORT": "5432"
-        }
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
+}
 
 else:
     DATABASES = {

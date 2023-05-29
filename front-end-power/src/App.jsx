@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react'
 import './style/css/style.css'
 import Form from "./components/Form";
+import NotFound from './components/NotFound';
+import Spans from './components/Spans';
+import Subtitle from "./components/Subtitle";
+import Title from "./components/Title";
+import Loading from "./components/Loading";
+import Shadow from "./components/Shadow"
+
 
 
 function App() {
@@ -8,37 +15,43 @@ function App() {
   const [background, setBackground] = useState("");
   const [showWelcome, setShowWelcome] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  
-  
+
   useEffect(() => {
-    if (userData && userData.activo) {
-      setBackground("linear-gradient(rgb(47 167 4), rgb(96 235 5))");
-      setShowWelcome(true);
-    } else if (userData && !userData.activo) {
-      setBackground("linear-gradient(rgb(155 3 3), rgb(240 7 7))");
-      setShowWelcome(true);
-    }
+    let timer 
 
-    if (notFound) {
-      setBackground("linear-gradient(rgb(200 189 5), rgb(240 225 7))");
+    if (isLoading) {
+      setBackground("linear-gradient(rgb(0 0 0), rgb(214 229 7))");
     }
+    else if (userData && userData.activo) {
+        setBackground("linear-gradient(rgb(47 167 4), rgb(96 235 5))");
+        setShowWelcome(true);
+    }else if (userData && !userData.activo) {
+        setBackground("linear-gradient(rgb(155 3 3), rgb(240 7 7))");
+        setShowWelcome(true);
+      }
 
-      const timer = setTimeout(() => {
+    else if (notFound) {
+        setBackground("linear-gradient(rgb(200 189 5), rgb(240 225 7))");
+      }
+
+    if (!isLoading) {
+      timer = setTimeout(() => {
         setBackground("linear-gradient(#f0f0f0, #d4d4d4)");
         setShowWelcome(false);
         setNotFound(false);
-        setUserData(null);
+        // setUserData(null);
       }, 4000);
-    
-    
-    return () => clearTimeout(timer);
-  }
-  // ? cleanup function in useEffect is used to clear the timer when the component unmounts or updates.
-    
-  , [userData, notFound]);
+    }
 
+      return () => clearTimeout(timer);
+    },
+     [isLoading]);
+  
   useEffect(() => {
+    // ! ver por que tenes que aplicar asi
+    document.getElementsByClassName("background")[0].style.background = background;
     document.body.style.background = background;
   }, [background]);
 
@@ -46,6 +59,7 @@ function App() {
   // ? en react si pones autofocus es Focus con la f en mayuscula a diferencia de html
 
 
+// esto si encuentra al user
   if (showWelcome) {
     const today = new Date();
     const vencimiento = userData.vencimiento;
@@ -54,92 +68,54 @@ function App() {
     // tuviste que ponerle +1 porque sino no te daba
   
     
-    function Title() {
-
-      function Subtitle() {
-        if (!userData.activo) {
-          
-          const vencimiento = new Date(userData.vencimiento).toLocaleDateString(
-            "en-GB"
-          );
-          return (
-            <>
-              <h2>
-                Tu cuota venció el {vencimiento}
-              </h2>
-            </>
-          )
-        }
-
-        else {
-          return (
-            <>
-              <h2>Tu cuota vence en {daysDiff} días</h2>;
-            </>)
-        }
-      
-      }
-
-      if (userData.sexo === "Masculino") {
-        return (
-          <>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <h1> 🕺💪Bienvenido {userData.nombre} 💪🕺</h1>
-            <Subtitle />
-          </>
-        );
-      } else {
-        return (
-          <>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <h1>💃💅 Bienvenida {userData.nombre} 💅💃</h1>;
-            <Subtitle />
-          </>
-        );
-      }
-    }
-        return (
+      return (
           <div className="login-box">
-            <Title />
+            <Spans></Spans>
+            <Title data={{ sexo: userData.sexo, nombre: userData.nombre }} />
+            <Subtitle
+              data={{
+                activo: userData.activo,
+                vencimiento: userData.vencimiento,
+                daysDiff,
+              }}
+            />
           </div>
-        )
+        );
   }
   
-  else if (notFound) {
 
-    function Title() {
-        return (
-          <h1>🤔 El DNI ingresado no se encuentra en la base de datos 🤔</h1>
-        );
-    }
-    
+  // esto si no encuentra al usuario
+  else if (notFound) {
     return (
-      <div className="login-box">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <Title />
-      </div>
+      <NotFound></NotFound>
     );
   }
     
+  
+    
+  // esto es lo que te devuelve por defecto, osea la pagina inicial, que se subdivide a cuando esta cargando y cuando no.
   else {
     return (
-      <div className="login-box">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <h1>Bienvenido/a al Power Gym</h1>
-        <Form {...{ setUserData, setNotFound }} />
-      </div>
+      <>
+        {isLoading ? (
+          <>
+            <Shadow>
+              <div className="login-box">
+                <Spans></Spans>
+                <h1>Bienvenido/a al Power Gym</h1>
+                <Form {...{ setUserData, setNotFound, setIsLoading }} />
+              </div>
+            </Shadow>
+            <Loading />
+          </>
+        ) : (
+          <div className="login-box">
+            <Spans></Spans>
+            <h1>Bienvenido/a al Power Gym</h1>
+            <Form {...{ setUserData, setNotFound, setIsLoading }} />
+          </div>
+        )}
+      </>
     );
   }
 }

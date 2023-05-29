@@ -2,28 +2,35 @@ import { csrftoken } from "./CSRFToken";
 
 
 
-function Form({ setUserData, setNotFound }) {
+function Form({ setUserData, setNotFound, setIsLoading }) {
+
 
   const URL = "https://power-gym.onrender.com/"
+
+  // URL FOR DEVELOP
+  // const URL = "http://localhost:8000/"
   
-  function handleSubmit(event){
+  function handleSubmit(event) {
+    setIsLoading(true)
     event.preventDefault()
     // ? como le pusiste un name al input asi lo podes llamar despues del .target
     let input = event.target.input_dni;
     let inputValue = event.target.input_dni.value
     const getUserState = async () => {
+
       try {
         const response = await fetch(
           `${URL}usuario/${inputValue}`
         );
         const data = await response.json();
+        setIsLoading(false)
         
         if ("not found" in data) {
           setNotFound(true);
           input.value = "";
         } else {
           setUserData(data);
-          // inputValue = "" no te funciona
+          // inputValue = "" no te funciona por eso hiciste la variable input
           input.value = "";
         }
       } catch (error) {
@@ -55,7 +62,6 @@ function Form({ setUserData, setNotFound }) {
             autoFocus
             autoComplete="off"
           />
-        
         </div>
       </form>
     );
