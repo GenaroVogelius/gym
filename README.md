@@ -8,6 +8,7 @@ The Power Gym project aimed to create an intuitive user interface for customers 
 - Green background: If the customer's fee is up to date, the interface would show the number of days left until the next payment is due.
 - Red background: If the customer's fee is overdue, the interface would display the date when the fee became overdue.
 - Yellow background: If the DNI is not registered in the database, the interface would provide a notification indicating the unavailability of the customer's information.
+- 
 Additionally, an admin page was developed utilizing the Django admin interface. Customized templates were created to enhance the personalization and functionality. One of the added features was the ability to upload an Excel file to import data directly into the database.
 
 You can find the link of the project here https://power-gym.onrender.com/
