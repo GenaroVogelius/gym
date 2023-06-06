@@ -8,6 +8,8 @@ The Power Gym project aimed to create an intuitive user interface for customers 
 - Yellow background: If the DNI is not registered in the database, the interface would provide a notification indicating the unavailability of the customer's information.
 Additionally, an admin page was developed utilizing the Django admin interface. Customized templates were created to enhance the personalization and functionality. One of the added features was the ability to upload an Excel file to import data directly into the database.
 
+You can find the link of the project here https://power-gym.onrender.com/
+
 # Specifications:
 
 - Backend: The application's backend was built using Django, a powerful Python web framework. Two models were created: one for the gym clients, containing all relevant data needed by the owner, and another for tracking client attendance, including arrival time, date, and fee status. API endpoints were developed using the Django Rest framework to enable smooth data communication.
