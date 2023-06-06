@@ -41,7 +41,7 @@ function App() {
         setBackground("linear-gradient(#f0f0f0, #d4d4d4)");
         setShowWelcome(false);
         setNotFound(false);
-        // setUserData(null);
+        setUserData(null);
       }, 4000);
     }
 
