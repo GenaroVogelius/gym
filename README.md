@@ -1,4 +1,5 @@
 # Project: Power Gym
+![clients side](https://github.com/GenaroVogelius/Power-gym/blob/main/demoFiles/front_power.PNG)
 
 # Description:
 The Power Gym project aimed to create an intuitive user interface for customers upon their arrival at the gym. The index page featured a user-friendly interface where customers could enter their DNI (Identification Document Number). Based on this input, the screen would display the following information:
