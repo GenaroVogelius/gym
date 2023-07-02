@@ -30,20 +30,20 @@ class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
     # esto de id lo pusiste asi ya que importas los usuarios desde un excel, en asistencia no lo pones porque arranca desde cero.
 
+    # ? @staticmethod: This decorator is used to define a static method within a class. A static method belongs to the class itself rather than an instance of the class. In this case, it means that the method can be called directly on the class itself without needing to create an instance of the class. 
+    # ? @receiver(pre_save, sender="power_app.Usuario"): This is a decorator provided by Django's signals framework. It allows you to register the function as a receiver for the pre_save signal emitted by the Usuario model in the power_app app. The pre_save signal is sent just before saving an instance of the model.
     @staticmethod
     @receiver(pre_save, sender="power_app.Usuario")
     def update_activo(sender, instance, **kwargs):
-        try:
-            if instance.vencimiento < timezone.now().date():
-                instance.activo = False
-            else:
-                instance.activo = True
-        except:
+        if instance.vencimiento < timezone.now().date():
+            instance.activo = False
+        else:
             instance.activo = True
+        
 
     def save(self, *args, **kwargs):
 
-        # para cuando se crea un nuevo usuario.
+        #? para cuando se crea un nuevo usuario.
         if self.vencimiento == None:
             self.vencimiento = self.pago + timedelta(days=30)
             if self.vencimiento.day != self.pago.day:

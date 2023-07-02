@@ -7,6 +7,11 @@ html {
   background: linear-gradient(#f0f0f0, #d4d4d4);
 }
 
+.background-notfound {
+  font-family: "Inter", sans-serif;
+  background: "yellow";
+}
+
 .login-box {
   position: absolute;
   top: 50%;
@@ -496,6 +501,11 @@ svg rect {
   50%, 100% {
     bottom: 100%;
   }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=style.css.map */

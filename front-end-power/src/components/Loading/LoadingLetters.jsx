@@ -1,5 +1,5 @@
 
-function LoadingEffect() {
+function LoadingLetters() {
     return (
       <div class="load-6">
         <div class="letter-holder">
@@ -21,4 +21,4 @@ function LoadingEffect() {
 
 
 
-export default LoadingEffect
+export default LoadingLetters

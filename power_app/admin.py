@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import pandas
+from django.core.cache import cache
 
 # esta importación es necesaria para el bucle for
 # from django.apps import apps
@@ -44,10 +45,34 @@ class UsuarioAdmin(admin.ModelAdmin):
     search_fields = ("nombre", "apellido","DNI",)
     search_help_text = "Buscar por nombre, apelido o DNI"
     actions = ['mark_as_published', 'mark_as_unpublished']
+    change_list_template = 'change_list_usuarios.html'
 
     # list_editable = ( "apellido", "sexo", "DNI", "celular", "pago", "vencimiento")
 
     form = UsuarioModelForm
+
+    def update_activo(self, obj):
+        if obj.vencimiento < timezone.now().date():
+            obj.activo = False
+        else:
+            obj.activo = True
+        obj.save()
+
+    update_activo.short_description = "Update Activo"
+
+    # the changelist_view method checks the last execution date stored in the cache (update_activo_last_execution_date). If it is different from the current date, the update_activo function is called for each object in the queryset, and the activo field is updated accordingly. After the execution, the current date is stored in the cache as the last execution date.
+    def changelist_view(self, request, extra_context=None):
+        last_execution_date = cache.get('update_activo_last_execution_date')
+        current_date = timezone.now().date()
+
+        if last_execution_date != current_date:
+            queryset = self.get_queryset(request)
+            for obj in queryset:
+                self.update_activo(obj)
+
+            cache.set('update_activo_last_execution_date', current_date)
+
+        return super().changelist_view(request, extra_context=extra_context)
 
 
     def get_urls(self):
@@ -57,7 +82,6 @@ class UsuarioAdmin(admin.ModelAdmin):
         return new_urls + urls
 
     def upload_excel(self, request):
-
         if request.method == "POST":
             excel_file = request.FILES["excel_upload"]
         
@@ -76,15 +100,17 @@ class UsuarioAdmin(admin.ModelAdmin):
                     apellido=row['apellido'],
                     sexo=row['sexo'],
                     DNI=row['DNI'],
-                    pago=row['pago'] or timezone.now(),
-                    vencimiento=row['vencimiento'] or timezone.now() + timezone.timedelta(days=30),
+                    pago=timezone.now(),
+                    vencimiento=timezone.now() + timezone.timedelta(days=30),
                 )
                 
             return HttpResponseRedirect(reverse('admin:index'))
 
+    
+    
+    
 
-
-
+    
 
 
 class AsistenciaAdmin(admin.ModelAdmin):

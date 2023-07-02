@@ -1,5 +1,13 @@
 // sass --watch scss/style.scss css/style.css
 
+
+
+
 @forward "_index";
 @forward "_variables";
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

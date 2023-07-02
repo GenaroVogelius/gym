@@ -1,14 +1,14 @@
-import { csrftoken } from "./CSRFToken";
+import { csrftoken } from "./Utils/CSRFToken";
 
 
 
 function Form({ setUserData, setNotFound, setIsLoading }) {
 
 
-  const URL = "https://power-gym.onrender.com/"
+  // const URL = "https://power-gym.onrender.com/"
 
   // URL FOR DEVELOP
-  // const URL = "http://localhost:8000/"
+  const URL = "http://localhost:8000/"
   
   function handleSubmit(event) {
     setIsLoading(true)
@@ -27,12 +27,12 @@ function Form({ setUserData, setNotFound, setIsLoading }) {
         
         if ("not found" in data) {
           setNotFound(true);
-          input.value = "";
         } else {
           setUserData(data);
           // inputValue = "" no te funciona por eso hiciste la variable input
-          input.value = "";
+          
         }
+        input.value = "";
       } catch (error) {
         console.log("Error:", error.message);
       }
@@ -52,7 +52,7 @@ function Form({ setUserData, setNotFound, setIsLoading }) {
 
     return (
       <form onSubmit={handleSubmit}>
-        <div class="user-box">
+        <div className="user-box">
           <label>Ingrese su D.N.I</label>
           <input
             className="input"

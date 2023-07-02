@@ -10,12 +10,17 @@ html {
 
 
 
+
 .background{
     font-family: 'Inter', sans-serif;
     background: linear-gradient(v.$color-white, v.$color-white-gradient);
 }
 
 
+.background-notfound {
+    font-family: 'Inter', sans-serif;
+    background: "yellow";
+}
 
 .login-box {
     position: absolute;
