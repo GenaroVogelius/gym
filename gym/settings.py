@@ -19,21 +19,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
-SECRET_KEY = "rhi262ogk32lea&on=v!5yf(5$eo8wr!8l2zk0rl^jeag3nbb^"
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
-# esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
-# DEBUG = False
+#? esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
+if 'DJANGO_SETTINGS_MODULE' in os.environ:
+    # Production settings
+    DEBUG = False
+else:
+    # Development settings
+    DEBUG = True
 
+# ! te pone siempre en False, ver para cambiar
 
+ALLOWED_HOSTS = []
+EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
+if EXTERNAL_HOSTNAME:    
+    ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
 
-
-ALLOWED_HOSTS = ["*"]
-# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-# if RENDER_EXTERNAL_HOSTNAME:    
-#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-# ALLOWED_HOSTS.append("http://c2361471.ferozo.com/")
 
 
 
@@ -41,7 +43,6 @@ INSTALLED_APPS = [
     "power_app", # !agregaste esto
     'rest_framework',# !agregaste esto
     "corsheaders",# !agregaste esto
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -104,11 +105,11 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.postgresql_psycopg2",
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
     # 'default': {
     #     'ENGINE': "django.db.backends.mysql",
