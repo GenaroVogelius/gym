@@ -30,10 +30,10 @@ SECRET_KEY="rhi262ogk32lea&on=v!5yf(5$eo8wr!8l2zk0rl^jeag3nbb^"
 # esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
 DEBUG=False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
-if EXTERNAL_HOSTNAME:    
-    ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
+# if EXTERNAL_HOSTNAME:    
+#     ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
 
 print(DEBUG)
 print(EXTERNAL_HOSTNAME)
