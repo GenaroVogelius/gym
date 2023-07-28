@@ -34,10 +34,10 @@ EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
 if EXTERNAL_HOSTNAME:    
     ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
 
-# print(DEBUG)
-# print(EXTERNAL_HOSTNAME)
-# print(SECRET_KEY)
-
+print(DEBUG)
+print(EXTERNAL_HOSTNAME)
+print(SECRET_KEY)
+print(load_dotenv(os.path.join(BASE_DIR, ".env")))
 
 
 
