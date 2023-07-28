@@ -17,27 +17,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = "rhi262ogk32lea&on=v!5yf(5$eo8wr!8l2zk0rl^jeag3nbb^"
+
 # SECURITY WARNING: don't run with debug turned on in production!
-#? esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
-# if 'DJANGO_SETTINGS_MODULE' in os.environ:
-#     # Production settings
-#     DEBUG = False
-# else:
-#     # Development settings
-#     DEBUG = True
+DEBUG = 'RENDER' not in os.environ
+# esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
+# DEBUG = False
 
-# ? esto no creo que sea
-DEBUG=True
 
-# ! te pone siempre en False, ver para cambiar
+
 
 ALLOWED_HOSTS = ["*"]
-# EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
-# if EXTERNAL_HOSTNAME:    
-#     ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
+# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+# if RENDER_EXTERNAL_HOSTNAME:    
+#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# ALLOWED_HOSTS.append("http://c2361471.ferozo.com/")
+
+
 
 
 
