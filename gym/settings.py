@@ -27,17 +27,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 # esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
-# DEBUG = False
 
+ALLOWED_HOSTS = []
+EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
+if EXTERNAL_HOSTNAME:    
+    ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
 
-
-
-ALLOWED_HOSTS = ["*"]
-# EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
-# if EXTERNAL_HOSTNAME:    
-#     ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
-
-
+print(DEBUG)
+print(EXTERNAL_HOSTNAME)
+print(SECRET_KEY)
 
 
 
