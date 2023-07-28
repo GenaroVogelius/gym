@@ -22,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #? esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
-if 'DJANGO_SETTINGS_MODULE' in os.environ:
-    # Production settings
-    DEBUG = False
-else:
-    # Development settings
-    DEBUG = True
+# if 'DJANGO_SETTINGS_MODULE' in os.environ:
+#     # Production settings
+#     DEBUG = False
+# else:
+#     # Development settings
+#     DEBUG = True
+
+DEBUG=True
 
 # ! te pone siempre en False, ver para cambiar
 
