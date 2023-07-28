@@ -29,14 +29,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #     # Development settings
 #     DEBUG = True
 
+# ? esto no creo que sea
 DEBUG=True
 
 # ! te pone siempre en False, ver para cambiar
 
-ALLOWED_HOSTS = []
-EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
-if EXTERNAL_HOSTNAME:    
-    ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = ["*"]
+# EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
+# if EXTERNAL_HOSTNAME:    
+#     ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
 
 
 
