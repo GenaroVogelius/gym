@@ -4,9 +4,11 @@
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
 
 load_dotenv() 
+config = dotenv_values(".env")
+print(config)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # !agregaste esto, .parent te permite ir un folder atrás
@@ -170,11 +172,7 @@ STATIC_URL = "/assets/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True
-else:
-    CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:8000', "https://vps-3503468-x.dattaweb.com"
-]
+    CORS_ALLOW_ALL_ORIGINS = True 
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
