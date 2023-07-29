@@ -175,6 +175,7 @@ if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True 
 
 if not DEBUG:
+    CORS_ALLOWED_ORIGINS = "https://vps-3503468-x.dattaweb.com"
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     
 
