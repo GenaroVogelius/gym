@@ -56,7 +56,7 @@ function App() {
     const today = new Date();
     const vencimiento = userData.vencimiento;
     const timeDiff = new Date(vencimiento) - today;
-    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
+    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
     // tuviste que ponerle +1 porque sino no te daba
 
     return (

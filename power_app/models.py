@@ -4,11 +4,9 @@ from django.utils import timezone
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from django.utils.html import format_html
+
 
 # Create your models here.
-
-
 class Usuario(models.Model):
 
     # el primer argumento es como se va guardar en el model, el segundo argumento es como se va a ver en admin

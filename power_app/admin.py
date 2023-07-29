@@ -117,6 +117,8 @@ class AsistenciaAdmin(admin.ModelAdmin):
     list_display = ("usuario","dia", "hora", "activo")
     list_filter =("dia","activo")
     search_fields = ("usuario",)
+    search_help_text = "Buscar por nombre"
+    list_per_page = 10
 
     
 
