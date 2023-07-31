@@ -13,13 +13,13 @@ function Title(props) {
   if (titleData.sexo === "Masculino") {
     return (
       <>
-        <h1> 🕺💪Bienvenido {titleData.nombre} 💪🕺</h1>
+        <h1> Bienvenido {titleData.nombre} </h1>
       </>
     );
   } else {
     return (
       <>
-        <h1>💃💅 Bienvenida {titleData.nombre} 💅💃</h1>;
+        <h1> Bienvenida {titleData.nombre}</h1>;
       </>
     );
   }
