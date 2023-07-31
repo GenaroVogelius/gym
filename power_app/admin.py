@@ -100,8 +100,8 @@ class UsuarioAdmin(admin.ModelAdmin):
                     apellido=row['apellido'],
                     sexo=row['sexo'],
                     DNI=row['DNI'],
-                    pago=timezone.now(),
-                    vencimiento=timezone.now() + timezone.timedelta(days=30),
+                    pago=row['pago'],
+                    vencimiento= row['vencimiento'],
                 )
                 
             return HttpResponseRedirect(reverse('admin:index'))

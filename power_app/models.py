@@ -33,10 +33,18 @@ class Usuario(models.Model):
     @staticmethod
     @receiver(pre_save, sender="power_app.Usuario")
     def update_activo(sender, instance, **kwargs):
-        if instance.vencimiento < timezone.now().date():
-            instance.activo = False
-        else:
-            instance.activo = True
+        # ? escribimos un try y excep ya que necesitamos el .date() cuando se sube un archivo excel y cuando no salta un error por eso en el except lo sacamos
+        try:
+            if instance.vencimiento.date() < timezone.now().date():
+                instance.activo = False
+            else:
+                instance.activo = True
+        except:
+            if instance.vencimiento < timezone.now().date():
+                instance.activo = False
+            else:
+                instance.activo = True
+
         
 
     def save(self, *args, **kwargs):
