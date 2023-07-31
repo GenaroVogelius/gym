@@ -4,11 +4,9 @@
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 
 load_dotenv() 
-config = dotenv_values(".env")
-print(config)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # !agregaste esto, .parent te permite ir un folder atrás
@@ -30,12 +28,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # esto basicamente le dice que si esta en producción sea false y si esta en desarrollo sea true.
-DEBUG=False
-
-ALLOWED_HOSTS = []
 EXTERNAL_HOSTNAME = os.environ.get('EXTERNAL_HOSTNAME')
-if EXTERNAL_HOSTNAME:    
+if EXTERNAL_HOSTNAME:
+    DEBUG=False
+    ALLOWED_HOSTS = []  
     ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
+
+else:
+    ALLOWED_HOSTS = ["*"]
+    DEBUG = True
 
 # print(DEBUG)
 # print(EXTERNAL_HOSTNAME)

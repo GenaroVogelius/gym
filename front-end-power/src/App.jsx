@@ -8,6 +8,8 @@ import Title from "./components/Title";
 import LoadingBox from "./components/Loading/LoadingBox";
 import Shadow from "./components/Loading/Shadow";
 
+
+
 function App() {
   const [userData, setUserData] = useState(null);
   const [background, setBackground] = useState("");

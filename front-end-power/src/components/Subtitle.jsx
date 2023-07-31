@@ -19,7 +19,22 @@ function Subtitle( props ) {
           <h2>Tu cuota venció el {vencimiento}</h2>
         </>
       );
-    } else {
+    } else if (subtitleInfo.daysDiff === 1) {
+      return (
+        <>
+          <h2>Tu cuota vence mañana</h2>;
+        </>
+      );
+    }
+
+      else if (subtitleInfo.daysDiff === 0) {
+      return (
+        <>
+          <h2>Tu cuota vence hoy</h2>;
+        </>
+      );
+  }
+  else{
       return (
         <>
           <h2>Tu cuota vence en {subtitleInfo.daysDiff} días</h2>;
