@@ -177,7 +177,7 @@ if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True 
 
 if not DEBUG:
-    CORS_ALLOWED_ORIGINS = ["https://vps-3503468-x.dattaweb.com"]
+    CORS_ALLOWED_ORIGINS = [os.environ.get('HTTPS')]
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     
 # ? This will run the delete_old_asistencias function every day at midnight (0:00). Esta libreria solo te funciona en sistema linux
