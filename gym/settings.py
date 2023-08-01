@@ -182,7 +182,7 @@ if not DEBUG:
     
 # ? This will run the delete_old_asistencias function every day at midnight (0:00). Esta libreria solo te funciona en sistema linux
 CRONJOBS = [
-    ('0 0 * * *', 'power_app.utils.delete_old_asistencias'),
+    ('0 0 * * *', 'power_app.utils.delete_old_asistencias'), ('0 0 * * *', 'power_app.utils.delete_old_users')
 ]
 
 
