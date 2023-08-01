@@ -35,7 +35,6 @@ if EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(EXTERNAL_HOSTNAME)
 
 else:
-    ALLOWED_HOSTS = ["*"]
     DEBUG = True
 
 
@@ -177,6 +176,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True 
+    ALLOWED_HOSTS = ["*"]
 
 if not DEBUG:
     CORS_ALLOWED_ORIGINS = [os.environ.get('HTTPS')]
