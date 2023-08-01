@@ -4,7 +4,7 @@ function NotFound() {
   return (
     <div className="login-box">
       <Spans></Spans>
-      <h1>🤔 El DNI ingresado no se encuentra en la base de datos 🤔</h1>
+      <h1>El DNI ingresado no se encuentra en la base de datos</h1>
     </div>
   );
 }

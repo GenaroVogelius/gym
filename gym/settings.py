@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "power_app", # !agregaste esto
     'rest_framework',# !agregaste esto
     "corsheaders",# !agregaste esto
+    "django_crontab",# !agregaste esto
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -179,7 +180,9 @@ if not DEBUG:
     CORS_ALLOWED_ORIGINS = ["https://vps-3503468-x.dattaweb.com"]
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     
-
-
+# ? This will run the delete_old_asistencias function every day at midnight (0:00).
+CRONJOBS = [
+    ('0 0 * * *', 'power_app.utils.delete_old_asistencias'),
+]
 
 
