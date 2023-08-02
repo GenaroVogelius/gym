@@ -6,6 +6,7 @@ function Form({ setUserData, setNotFound, setIsLoading }) {
 
 
   const URL = import.meta.env.VITE_URL;
+  console.log(URL)
 
     // "https://vps-3503468-x.dattaweb.com/";
 
