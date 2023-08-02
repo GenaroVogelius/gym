@@ -38,7 +38,7 @@ else:
     DEBUG = True
 
 
-
+print()
 
 INSTALLED_APPS = [
     "power_app", # !agregaste esto
