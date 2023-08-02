@@ -38,7 +38,6 @@ else:
     DEBUG = True
 
 
-DEBUG=True
 # print(DEBUG)
 # print(EXTERNAL_HOSTNAME)
 # print(SECRET_KEY)
