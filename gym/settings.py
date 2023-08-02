@@ -38,7 +38,8 @@ else:
     DEBUG = True
 
 
-print()
+print(os.environ.get('EXTERNAL_HOSTNAME'))
+DEBUG = False
 
 INSTALLED_APPS = [
     "power_app", # !agregaste esto
