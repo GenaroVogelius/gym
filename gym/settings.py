@@ -38,14 +38,6 @@ else:
     DEBUG = True
 
 
-# print(DEBUG)
-# print(EXTERNAL_HOSTNAME)
-# print(SECRET_KEY)
-
-# print("path")
-# print(load_dotenv(os.path.join(BASE_DIR, ".env")))
-
-
 
 
 INSTALLED_APPS = [

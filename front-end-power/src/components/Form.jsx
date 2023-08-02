@@ -5,11 +5,11 @@ import { csrftoken } from "./Utils/CSRFToken";
 function Form({ setUserData, setNotFound, setIsLoading }) {
 
 
+  const URL = import.meta.env.VITE_URL;
 
-  const URL = "https://vps-3503468-x.dattaweb.com/"
+    // "https://vps-3503468-x.dattaweb.com/";
 
-  // URL FOR DEVELOP
-  // const URL = "http://localhost:8000/"
+  
   
   function handleSubmit(event) {
     setIsLoading(true)

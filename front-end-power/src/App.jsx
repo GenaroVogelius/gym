@@ -99,7 +99,7 @@ function App() {
         ) : (
           <div className="login-box">
             <Spans></Spans>
-            <h1>Bienvenido/a al Power Gym</h1>
+              <h1>Bienvenido/a al Power Gym</h1>
             <Form {...{ setUserData, setNotFound, setIsLoading }} />
           </div>
         )}
