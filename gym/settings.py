@@ -39,6 +39,7 @@ else:
 
 
 print(os.environ.get('EXTERNAL_HOSTNAME'))
+print("a")
 DEBUG = False
 
 INSTALLED_APPS = [
