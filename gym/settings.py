@@ -37,10 +37,8 @@ if EXTERNAL_HOSTNAME:
 else:
     DEBUG = True
 
+print(DEBUG)
 
-print(os.environ.get('EXTERNAL_HOSTNAME'))
-print("a")
-DEBUG = False
 
 INSTALLED_APPS = [
     "power_app", # !agregaste esto
