@@ -37,7 +37,6 @@ if EXTERNAL_HOSTNAME:
 else:
     DEBUG = True
 
-print(DEBUG)
 
 
 INSTALLED_APPS = [
@@ -154,7 +153,7 @@ USE_TZ = True
 
 #? aca le decis el path que tiene que hacer django para llegar a assets.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'front-end-power/dist/assets'), os.path.join(BASE_DIR, 'custom_admin/static')
+    os.path.join(BASE_DIR, 'front-end-power/dist/assets'), os.path.join(BASE_DIR, 'custom_admin/static'), os.path.join(BASE_DIR, 'power_app/static')
 ]
 
 

@@ -4,11 +4,8 @@ from django import forms
 from django.core.validators import RegexValidator
 from django.shortcuts import render
 from django.urls import path
-from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-import pandas
 from django.core.cache import cache
+from .views import *
 
 # esta importación es necesaria para el bucle for
 # from django.apps import apps
@@ -78,40 +75,10 @@ class UsuarioAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super().get_urls()
         # lo que haces aca es crear este path y que cuando se lo llame se ejecute la función upload
-        new_urls = [path('upload-excel/', self.upload_excel),]
+        new_urls = [path('upload-excel/', upload_excel), path('graphics/', graphics)]
         return new_urls + urls
 
-    def upload_excel(self, request):
-        if request.method == "POST":
-            excel_file = request.FILES["excel_upload"]
-        
-            if not excel_file.name.endswith('.xlsx'):
-                messages.warning(request, 'The wrong file type was uploaded')
-                url = reverse('admin:index')
-                return HttpResponseRedirect(url)
-        
-            # Load the Excel file into a Pandas DataFrame
-            data_frame = pandas.read_excel(excel_file)
-            
-            # Iterate over the rows of the DataFrame and create or update instances of the Usuario model
-            for index, row in data_frame.iterrows():
-                Usuario.objects.update_or_create(
-                    nombre=row['nombre'],
-                    apellido=row['apellido'],
-                    sexo=row['sexo'],
-                    DNI=row['DNI'],
-                    pago=row['pago'],
-                    vencimiento= row['vencimiento'],
-                )
-                
-            return HttpResponseRedirect(reverse('admin:index'))
-
     
-    
-    
-
-    
-
 
 class AsistenciaAdmin(admin.ModelAdmin):
     list_display = ("usuario","dia", "hora", "activo")
