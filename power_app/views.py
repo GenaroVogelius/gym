@@ -9,10 +9,9 @@ import pandas
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
-from datetime import datetime, time
+from datetime import time
 import json
 from django.db.models import Q
-from collections import OrderedDict
 
 
 @api_view(["GET", "POST"])
@@ -39,7 +38,7 @@ def usuario(request, dni):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-def upload_excel(self, request):
+def upload_excel(request):
         if request.method == "POST":
             excel_file = request.FILES["excel_upload"]
         

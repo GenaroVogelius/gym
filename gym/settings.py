@@ -38,7 +38,6 @@ else:
     DEBUG = True
 
 
-
 INSTALLED_APPS = [
     "power_app", # !agregaste esto
     'rest_framework',# !agregaste esto
@@ -112,15 +111,6 @@ else:
         'HOST': os.environ.get('DB_HOST'),
         'PORT': os.environ.get('DB_PORT'),
     }
-    # 'default': {
-    #     'ENGINE': "django.db.backends.mysql",
-    #     'NAME': os.getenv('DB_NAME'),
-    #     'USER': os.getenv('DB_USER'),
-    #     'PASSWORD': os.getenv('DB_PASSWORD'),
-    #     'HOST': os.getenv('DB_HOST'),
-    #     'PORT': os.getenv('DB_PORT'),
-    # }
-
 }
 
 
@@ -169,6 +159,9 @@ if DEBUG:
     ALLOWED_HOSTS = ["*"]
 
 if not DEBUG:
+    # !BORRAR ESTO DE ALLOWED HOSTS Y STATIC FILES
+    ALLOWED_HOSTS = ["power-gym.com.ar", "www.power-gym.com.ar", "149.50.130.158"]
+    ALLOWED_HOSTS.append("*")
     CORS_ALLOWED_ORIGINS = [os.environ.get('HTTPS')]
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     

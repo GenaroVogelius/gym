@@ -78,7 +78,6 @@ class UsuarioAdmin(admin.ModelAdmin):
         new_urls = [path('upload-excel/', upload_excel), path('graphics/', graphics)]
         return new_urls + urls
 
-    
 
 class AsistenciaAdmin(admin.ModelAdmin):
     list_display = ("usuario","dia", "hora", "activo")

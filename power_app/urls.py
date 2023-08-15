@@ -9,6 +9,4 @@ urlpatterns = [
     # API rest
     path('', TemplateView.as_view(template_name='index.html')),
     path('usuario/<int:dni>', views.usuario, name="usuario"),
-    
-    
 ]
