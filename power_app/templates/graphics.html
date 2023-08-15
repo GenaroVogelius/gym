@@ -21,12 +21,22 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center mb-3">Estadísticas</h1>
-    <h2>Estadísticas de asistencia por día</h2>
     <div class="card mb-5">
         <canvas id="myChart1"></canvas>
     </div>
-      <div class="card mb-5"  style="height: 500px;">
+    <div class="card mb-5" >
+        <canvas id="myChart3"></canvas>
+      </div>
+    <div class="card mb-5">
         <canvas id="myChart2"></canvas>
+    </div>
+      <div class="row mb-4 ">
+        <div class="card col-md-6" style="height: 500px;">
+        <canvas id="myChart4"></canvas>
+        </div>
+        <div class="card col-md-6" style="height: 500px;">
+        <canvas id="myChart5"></canvas>
+         </div>
       </div>
 
 
@@ -35,10 +45,14 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    let llegadasData = {{ horarios_dict|safe }};
-    let DAYS_LIST = {{ days_list|safe }};
-
-
+    let data = {{data|safe}}
+    let llegadasData = data.attendance_per_day_and_time
+    let indexDatesMissing = data.missing_dates_index
+    let daysList= Object.keys(llegadasData);
+    let sexoCount = data.sexo_counts_dict
+    let total_arrivals_per_day = data.daily_total_arrivals_dict
+    let asistenciasPerMonth = data.asistencias_per_month_dict
+    let activeNonActiveMembers = data.active_and_no_active_members_dict
 </script> 
 <script src="{% static 'charts.js' %}"></script>
 
