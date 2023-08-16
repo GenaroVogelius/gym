@@ -19,7 +19,7 @@ class Usuario(models.Model):
     apellido = models.CharField(max_length=50)
     sexo = models.CharField(max_length=10, choices=SEX_CHOICES)
     DNI = models.IntegerField(unique=True)
-    celular = models.IntegerField(blank=True, null=True)
+    celular = models.CharField(max_length=20, blank=True, null=True)
     pago = models.DateField(default=timezone.now, null=False, blank=False)
     vencimiento = models.DateField(
         null=True, blank=True, help_text="Si no es especificado será dentro de 30 dias"

@@ -59,6 +59,7 @@ def upload_excel(request):
                     DNI=row['DNI'],
                     pago=row['pago'],
                     vencimiento= row['vencimiento'],
+                    celular=int(row['celular']) if pandas.notna(row['celular']) else None
                 )
                 
             return HttpResponseRedirect(reverse('admin:index'))
@@ -82,6 +83,14 @@ class GraphicsDataGenerator:
 
 
     def check_missing_dates(self, asistencias_df):
+        """
+        Checks if the data that is missing is a sunday or another day, if it's another day it will append the index of that day in a list to be used after for the front-end.
+        Args:
+            asistencias_df (pandas.DataFrame): DataFrame with attendance data.
+
+        Returns:
+            python.List: with numbers.
+        """
         min_date = asistencias_df['dia'].min()
         max_date = asistencias_df['dia'].max()
 
@@ -100,6 +109,11 @@ class GraphicsDataGenerator:
         return missing_dates_index
 
     def get_asistencias_per_month(self):
+        """
+        Obtiene la asistencia total de hoy a 12 meses atras y crea un dataframe
+        Returns:
+            pandas.DataFrame: A DataFrame containing attendance data.
+        """
         twelve_month_ago = timezone.now() - timedelta(days=30 * 12)
         asistencias = Asistencia.objects.filter(dia__range=(twelve_month_ago, timezone.now()))
 
@@ -108,6 +122,16 @@ class GraphicsDataGenerator:
         return asistencias_per_month_df
 
     def get_asistencias_per_month_count(self, asistencias_per_month_df):
+        """
+        Cuenta cuantas personas fueron por mes y devuelve diccionario con mes y cantidad
+
+        Args:
+            sistencias_per_month_df (pandas.DataFrame): DataFrame with attendance data per month.
+
+        Returns:
+            python.Dict: {"2023-08":60},...
+        """
+
         asistencias_per_month_df['month'] = pandas.to_datetime(asistencias_per_month_df['dia']).dt.strftime('%Y-%m')
 
         # Count the number of persons per month
@@ -215,6 +239,16 @@ class GraphicsDataGenerator:
         return sexo_counts_dict
 
     def get_members_active_counts(self, users_df):
+        """
+        Cuenta cuantos socios activos e inactivos hay.
+
+        Args:
+            users_df (pandas.DataFrame): DataFrame with users data.
+
+        Returns:
+            dict: Dictionary containing active and unactive users amount.
+
+        """
         active_and_no_active_members_dict = users_df["activo"].value_counts().to_dict()
         return active_and_no_active_members_dict
 
@@ -267,3 +301,5 @@ def graphics(request):
 
 
 # ? @staticmethod decorator is a good practice for methods that don't need access to instance attributes and are more like utility functions. It clarifies that these methods are not bound to instance-specific data and can be called on the class itself.
+
+
