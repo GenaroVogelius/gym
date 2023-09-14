@@ -14,7 +14,7 @@ class Usuario(models.Model):
         ("Femenino", "Femenino"),
         ("Masculino", "Masculino"),
     ]
-
+    
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     sexo = models.CharField(max_length=10, choices=SEX_CHOICES)
