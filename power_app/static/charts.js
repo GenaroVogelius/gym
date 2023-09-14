@@ -293,7 +293,7 @@ let configPieChartSex = {
         },
         title: {
           display: true,
-          text: "Asistencia por género dentro de 3 meses",
+          text: "Asistencia por género en los últimos 3 meses",
           font: {
             size: TITLESIZE,
           },
@@ -435,7 +435,7 @@ let configPieChartMembers = {
       },
       title: {
         display: true,
-        text: "Totalidad de socios activos y no activos dentro de 3 meses",
+        text: "Socios activos y no activos en los últimos 3 meses",
         font: {
           size: TITLESIZE,
         },

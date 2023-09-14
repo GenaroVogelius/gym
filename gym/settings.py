@@ -38,6 +38,8 @@ else:
     DEBUG = True
 
 
+
+
 INSTALLED_APPS = [
     "power_app", # !agregaste esto
     'rest_framework',# !agregaste esto
