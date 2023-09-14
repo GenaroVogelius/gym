@@ -22,10 +22,11 @@ power_site = PowerAdminArea(name="powerAdmin")
 # ? aca lo que haces es customize el formulario de django
 class UsuarioModelForm(forms.ModelForm):
     DNI = forms.IntegerField(widget=forms.TextInput(attrs={'size': 10}))
+    celular = forms.IntegerField(widget=forms.TextInput(attrs={'size': 10}), required=False)
     # estableces lo que esta permitdo por medio de una regular expresion
-    charfieldValidator = RegexValidator(r'^[a-zA-Z]*$', 'No puede ingresar números aquí.')
-    nombre = forms.CharField(max_length=50, validators=[charfieldValidator])
-    apellido=forms.CharField(max_length=50, validators=[charfieldValidator])
+    # charfieldValidator = RegexValidator(r'^[a-zA-Z]*$', 'No puede ingresar números aquí.')
+    # nombre = forms.CharField(max_length=50, validators=[charfieldValidator])
+    # apellido=forms.CharField(max_length=50, validators=[charfieldValidator])
 
     class Meta:
         model = Usuario
